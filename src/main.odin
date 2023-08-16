@@ -87,11 +87,11 @@ size_callback :: proc "c" (window: glfw.WindowHandle, width, height: i32) {
 
 
 play_bass :: proc() {
-    bass.BASS_Init(-1, 44100, 0, nil, nil)
-    chan := bass.BASS_StreamCreateFile(false, ".\\audio.mp3", 0, 0, 0)
-    bass.BASS_ChannelPlay(chan, false)
+    bass.Init(-1, 44100, 0, nil, nil)
+    chan := cast(u32)bass.StreamCreateFile(false, "audio.mp3", 0, 0, 0)
+    bass.ChannelPlay(chan, false)
     for true {
-        pos := bass.BASS_ChannelGetPosition(chan, 0)
+        pos := bass.ChannelGetPosition(chan, 0)
         fmt.printf("pos: %d\n", pos)
     }
 }
